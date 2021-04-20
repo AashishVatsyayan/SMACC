@@ -52,7 +52,7 @@ void CbMoveCartesianRelative::moveRelativeCartesian(moveit::planning_interface::
   ROS_INFO_STREAM("[CbMoveCartesianRelative] RELATIVE MOTION, SOURCE POSE: " << referenceStartPose);
   ROS_INFO_STREAM("[CbMoveCartesianRelative] Offset: " << offset);
 
-  waypoints.push_back(referenceStartPose.pose);  // up and out
+  // waypoints.push_back(referenceStartPose.pose);  // up and out
 
   auto endPose = referenceStartPose.pose;
 
@@ -81,7 +81,7 @@ void CbMoveCartesianRelative::moveRelativeCartesian(moveit::planning_interface::
                                                           trajectory);
 
   moveit::planning_interface::MoveItErrorCode behaviorResult;
-  if (fraction != 1.0 || fraction == -1)
+  if (fraction == -1)
   {
     ROS_WARN_STREAM("[CbMoveCartesianRelative] Cartesian plan joint-continuity percentaje. Execution skipped because not 100% of cartesian motion: " << fraction*100<<"%");
     behaviorResult = moveit::planning_interface::MoveItErrorCode::PLANNING_FAILED;
