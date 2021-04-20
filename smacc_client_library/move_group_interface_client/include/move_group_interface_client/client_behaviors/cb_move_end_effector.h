@@ -17,15 +17,16 @@ public:
   geometry_msgs::PoseStamped targetPose;
   std::string tip_link_;
   boost::optional<std::string> group_;
+  moveit_msgs::Constraints constraints;
 
   CbMoveEndEffector();
-  CbMoveEndEffector(geometry_msgs::PoseStamped target_pose, std::string tip_link = "");
+  CbMoveEndEffector(geometry_msgs::PoseStamped target_pose, std::string tip_link, moveit_msgs::Constraints constraints);
 
   virtual void onEntry() override;
 
 protected:
   bool moveToAbsolutePose(moveit::planning_interface::MoveGroupInterface &moveGroupInterface,
-                          geometry_msgs::PoseStamped &targetObjectPose);
+                          geometry_msgs::PoseStamped &targetObjectPose, moveit_msgs::Constraints &constraints);
 
   ClMoveGroup *movegroupClient_;
 };
